@@ -3,9 +3,11 @@ service:
 #---------------------------------------------------------- Package --
 package:
   include:
-    - buildspec.yml
+    - src/**
+    - "!**/*.test.js"
   exclude:
-    - node_modules/**
+    - ./**
+    - '!node_modules/**'
 #----------------------------------------------------------- Custom --
 # custom:
 #   ENV: ${file(./.env/${self:provider.stage}.yml)}
@@ -22,12 +24,8 @@ provider:
   timeout: 10 # Default
   memorySize: 128
   versionFunctions: false
-#------ overwrite default sls deployment s3 bucket config
-  deploymentBucket:
-    name: tut-cicd.${self:provider.region}
-  deploymentPrefix: serverless
 #------ example to setup roles/policies for AWS resources to access other resources
-  iamRoleStatements: ${file(./sls.role.all.yml)}
+  # iamRoleStatements: ${file(./sls.role.all.yml)}
 #-------------------------------------------------------- Resources --
 
 functions:
