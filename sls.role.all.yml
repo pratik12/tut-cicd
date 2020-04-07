@@ -1,0 +1,10 @@
+- Effect: "Allow"
+  Action:
+    - lambda:InvokeFunction
+    - cloudfront:CreateDistribution
+    - cloudfront:GetDistribution
+    - cloudfront:UpdateDistribution
+    - cloudfront:DeleteDistribution
+    - cloudfront:TagResource
+  Resource:
+    - "*"

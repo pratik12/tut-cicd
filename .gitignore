@@ -1,0 +1,42 @@
+dist
+
+# Build Folder
+builds
+
+# System files
+.DS_Store
+.vscode
+
+# Dependencies
+node_modules
+
+# env files
+.env
+
+# Local dev Configs
+.gittemplate
+
+# Test coverage and reporting
+.nyc_output
+coverage
+cucumber_report.*
+test/report/assets
+test/report/features
+test/report/index.html
+*all-passed.html
+*-failed.html
+
+# Serverless files
+.serverless
+.dynamodb
+
+# env files
+.env.development
+.env.staging
+.env.production
+.env.development.backup
+.env.staging.backup
+.env.production.backup
+
+# zip files
+*.zip

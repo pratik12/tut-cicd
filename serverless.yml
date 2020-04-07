@@ -1,0 +1,36 @@
+service:
+  name: tut-cicd
+#---------------------------------------------------------- Package --
+package:
+  include:
+    - buildspec.yml
+  exclude:
+    - node_modules/**
+#----------------------------------------------------------- Custom --
+# custom:
+#   ENV: ${file(./.env/${self:provider.stage}.yml)}
+
+#--------------------------------------------------------- Provider --
+provider:
+  name: aws
+  stage: ${opt:stage, 'dev'}
+  region: us-east-1
+  runtime: nodejs12.x
+  #
+  # Lambda Config
+  # -------------
+  timeout: 10 # Default
+  memorySize: 128
+  versionFunctions: false
+  iamRoleStatements: ${file(./sls.role.all.yml)}
+#-------------------------------------------------------- Resources --
+
+functions:
+  sampleLambda:
+    handler: src/handlers/index.luckyNumber
+    description: "Sample CI/CD Tutorial"
+    events:
+      - http:
+          path: hello
+          cors: true
+          method: get
